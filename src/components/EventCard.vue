@@ -10,13 +10,15 @@
 	</router-link>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent, PropType } from "vue"
+import { EventItem } from "../types"
+export default defineComponent({
 	name: "EventCard",
 	props: {
-		event: Object,
+		event: Object as PropType<EventItem>,
 	},
-}
+})
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

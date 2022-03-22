@@ -32,14 +32,15 @@
 	</div>
 </template>
 
-<script>
+<script lang="ts">
 // @ is an alias to /src
 import EventCard from "@/components/EventCard.vue"
-import EventService from "@/services/EventService.js"
-import { watchEffect } from "vue"
+import EventService from "@/services/EventService"
+import { EventItem } from "../types"
+import { watchEffect, defineComponent } from "vue"
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex"
 
-export default {
+export default defineComponent({
 	name: "EventList",
 	props: ["page"],
 	components: {
@@ -47,13 +48,12 @@ export default {
 	},
 	data() {
 		return {
-			events: null,
-			// totalEvents: 0,
+			events: [] as EventItem[],
 		}
 	},
 	created() {
 		watchEffect(() => {
-			this.events = null
+			this.events = [] as EventItem[]
 			EventService.getEvents(2, this.page)
 				.then((res) => {
 					this.events = res.data
@@ -74,6 +74,26 @@ export default {
 	methods: {},
 	computed: {
 		totalPages() {
+			type ComicUniverse = "Marvel" | "D.C"
+
+			interface Hero {
+				name: String
+				age: Number
+				activeAvenger: Boolean
+				powers: String[]
+				universe: ComicUniverse
+			}
+
+			let spiderman: Hero = {
+				name: "Peter Parker",
+				age: 17,
+				activeAvenger: true,
+				powers: ["wall crawl", "spider-sense"],
+				universe: "Marvel",
+			}
+
+			type buttonType = "blue" | "blue2"
+			let buttonStyle: buttonType = "blue2"
 			return Math.ceil(this.totalEvents / 2)
 		},
 		hasNextPage() {
@@ -82,7 +102,7 @@ export default {
 		...mapGetters(["eventsCount"]),
 		...mapState(["totalEvents"]),
 	},
-}
+})
 </script>
 
 <style scoped>

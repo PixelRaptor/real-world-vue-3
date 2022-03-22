@@ -12,13 +12,20 @@
 	</div>
 </template>
 
-<script>
-import EventService from "@/services/EventService.js"
-export default {
-	props: ["id"],
+<script lang="ts">
+import { defineComponent } from "vue"
+import { EventItem, typeId } from "../../types"
+import EventService from "@/services/EventService"
+export default defineComponent({
+	props: {
+		id: {
+			type: Number,
+			required: true,
+		},
+	},
 	data() {
 		return {
-			event: null,
+			event: {} as EventItem,
 		}
 	},
 	created() {
@@ -38,5 +45,5 @@ export default {
 				}
 			})
 	},
-}
+})
 </script>

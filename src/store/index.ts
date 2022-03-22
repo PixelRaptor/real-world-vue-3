@@ -5,7 +5,7 @@ import {
 	ADD_EVENT,
 	UPDATE_TOTAL_EVENTS,
 } from "./mutation-types"
-import EventService from "@/services/EventService.js"
+import EventService from "@/services/EventService"
 
 export default createStore({
 	state: {
@@ -25,19 +25,15 @@ export default createStore({
 	},
 	getters: {
 		getEventsList(state) {
-			return state.events.filter((event) => event.petsAllowed == true)
+			return state.events.filter(
+				(event: any) => event.petsAllowed == true
+			)
 		},
 		eventsCount(state) {
 			return state.events.length
 		},
-		doneTodos(state) {
-			return state.todos.filter((todo) => todo.done)
-		},
-		activeTodosCount(state) {
-			return state.todos.filter((todo) => todo.done).length
-		},
-		getEventById: (state) => (id) => {
-			return state.events.find((event) => event.id === id)
+		getEventById: (state) => (id: string) => {
+			return state.events.find((event: any) => event.id === id)
 		},
 	},
 	mutations: {
