@@ -1,4 +1,11 @@
 import { createStore } from "vuex"
+import {
+	INCREMENT,
+	INCREMENT_COUNT,
+	ADD_EVENT,
+	UPDATE_TOTAL_EVENTS,
+} from "./mutation-types"
+import EventService from "@/services/EventService.js"
 
 export default createStore({
 	state: {
@@ -13,22 +20,15 @@ export default createStore({
 			"food",
 			"community",
 		],
-		todos: [
-			{ id: 1, text: "wake", done: true },
-			{ id: 2, text: "bath", done: false },
-			{ id: 3, text: "eat", done: true },
-			{ id: 4, text: "work", done: false },
-		],
-		events: [
-			{ id: 1, title: "one", organizer: "..." },
-			{ id: 2, title: "two", organizer: "..." },
-			{ id: 3, title: "three", organizer: "..." },
-			{ id: 4, title: "four", organizer: "..." },
-		],
+		events: [],
+		totalEvents: 0,
 	},
 	getters: {
-		catLength(state) {
-			return state.categories.length
+		getEventsList(state) {
+			return state.events.filter((event) => event.petsAllowed == true)
+		},
+		eventsCount(state) {
+			return state.events.length
 		},
 		doneTodos(state) {
 			return state.todos.filter((todo) => todo.done)
@@ -40,7 +40,29 @@ export default createStore({
 			return state.events.find((event) => event.id === id)
 		},
 	},
-	mutations: {},
-	actions: {},
+	mutations: {
+		[INCREMENT](state) {
+			state.count++
+		},
+		[INCREMENT_COUNT](state, value) {
+			state.count += value
+		},
+		[ADD_EVENT](state, event) {
+			console.log(state.events)
+		},
+		[UPDATE_TOTAL_EVENTS](state, count) {
+			state.totalEvents = count
+		},
+	},
+	actions: {
+		createEvent({ commit }, event) {
+			return EventService.postEvent(event).then(() => {
+				commit(ADD_EVENT, event)
+			})
+		},
+		updateTotalEvents({ commit }, event) {
+			commit(UPDATE_TOTAL_EVENTS, event)
+		},
+	},
 	modules: {},
 })

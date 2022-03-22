@@ -67,9 +67,10 @@ const routes = [
 		props: true,
 	},
 	{
-		path: "/network-error",
+		path: "/network-error/:err",
 		name: "NetworkError",
 		component: NetworkError,
+		props: true,
 	},
 ]
 

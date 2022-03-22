@@ -1,0 +1,5 @@
+export const INCREMENT_COUNT = "INCREMENT_COUNT"
+export const INCREMENT = "INCREMENT"
+export const ADD_EVENT = "ADD_EVENT"
+export const FILL_EVENTS = "FILL_EVENTS"
+export const UPDATE_TOTAL_EVENTS = "UPDATE_TOTAL_EVENTS"

@@ -1,10 +1,6 @@
 <template>
 	<div>
 		<h1>Create an event{{ user.name }}</h1>
-		<ul>
-			<p>{{ getEventById(2) }}</p>
-			<p>{{ countPlusLocalState }}</p>
-		</ul>
 		<form @submit.prevent="sendIt">
 			<BaseSelect
 				v-model="event.category"
@@ -57,25 +53,14 @@ import BaseCheckbox from "@/components/BaseCheckbox.vue"
 import BaseRadioGroup from "@/components/BaseRadioGroup.vue"
 import axios from "axios"
 import { v4 as uuidv4 } from "uuid"
-import { mapState, mapGetters } from "vuex"
+import { mapState, mapGetters, mapMutations, mapActions } from "vuex"
+import { ADD_EVENT } from "../store/mutation-types"
 
 export default {
 	data() {
 		return {
 			localCount: 2,
-			event: {
-				user: "",
-				id: "",
-				category: "",
-				title: "",
-				description: "",
-				location: "",
-				pets: 1,
-				extras: {
-					catering: false,
-					music: false,
-				},
-			},
+			event: this.createFreshEventObject(),
 			petOptions: [
 				{ label: "Yes", value: 1 },
 				{ label: "No", value: 0 },
@@ -89,10 +74,43 @@ export default {
 		BaseRadioGroup,
 	},
 	methods: {
+		createFreshEventObject() {
+			const user = this.$store.state.user
+			const id = uuidv4()
+			const time = "14:30"
+			const date = "23 May, 2022"
+
+			return {
+				id: id,
+				category: "",
+				description: "",
+				location: "",
+				date: date,
+				time: time,
+				user: user,
+				title: "",
+				attendees: [],
+				pets: 1,
+				extras: {
+					catering: false,
+					music: false,
+				},
+			}
+		},
+		add() {
+			this.INCREMENT_COUNT(8)
+		},
 		sendIt() {
-			this.event.user = this.$store.state.user
-			this.event.id = uuidv4()
-			console.log("event:", this.event)
+			this.$store
+				.dispatch("createEvent", this.event)
+				.then(() => {
+					this.$router.push({
+						name: "EventDetails",
+						params: { id: this.event.id },
+					})
+					this.createFreshEventObject()
+				})
+				.catch(() => {})
 		},
 		sendForm() {
 			axios
@@ -105,19 +123,14 @@ export default {
 				})
 				.catch((err) => console.log(err))
 		},
+		...mapMutations(["addEvent", "INCREMENT", "INCREMENT_COUNT"]),
+		// ...mapActions(["createEvent"]),
 	},
 	computed: {
 		countPlusLocalState() {
 			return this.$store.state.count + this.localCount
 		},
-
-		// catLength() {
-		// 	return this.$store.getters.catLength
-		// },
-		// getEvent() {
-		// 	return this.$store.getters.getEventById
-		// },
-		...mapState(["user", "categories"]),
+		...mapState(["user", "categories", "count"]),
 		...mapGetters(["catLength", "getEventById"]),
 	},
 }

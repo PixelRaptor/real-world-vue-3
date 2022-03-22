@@ -8,6 +8,7 @@
 			"location": "Meow Town",
 			"date": "January 28, 2022",
 			"time": "12:00",
+			"petsAllowed": true,
 			"organizer": "Kat Laydee"
 		},
 		{
@@ -18,6 +19,7 @@
 			"location": "Flora City",
 			"date": "March 14, 2022",
 			"time": "10:00",
+			"petsAllowed": true,
 			"organizer": "Fern Pollin"
 		},
 		{
@@ -28,7 +30,137 @@
 			"location": "Playa Del Carmen",
 			"date": "July 22, 2022",
 			"time": "11:00",
+			"petsAllowed": false,
 			"organizer": "Carey Wales"
+		},
+		{
+			"id": 1001,
+			"category": "animal welfare",
+			"title": "Dog Adoption Day",
+			"description": "Find your new canine friend at this event.",
+			"location": "Woof Town",
+			"date": "August 28, 2022",
+			"time": "12:00",
+			"petsAllowed": true,
+			"organizer": "Dawg Dahd"
+		},
+		{
+			"id": 1002,
+			"category": "food",
+			"title": "Canned Food Drive",
+			"description": "Bring your canned food to donate to those in need.",
+			"location": "Tin City",
+			"date": "September 14, 2022",
+			"time": "3:00",
+			"petsAllowed": true,
+			"organizer": "Kahn Opiner"
+		},
+		{
+			"id": 1003,
+			"category": "sustainability",
+			"title": "Highway Cleanup",
+			"description": "Help pick up trash along the highway.",
+			"location": "Highway 50",
+			"date": "July 22, 2022",
+			"time": "11:00",
+			"petsAllowed": false,
+			"organizer": "Brody Kill"
+		},
+		{
+			"user": "Bruce Wayne",
+			"id": "aede4f6f-a55f-4112-88a4-96b6fac0f995",
+			"time": "14:30",
+			"date": "23 May, 2022",
+			"category": "animal welfare",
+			"title": "m,m,m",
+			"description": "m",
+			"location": "m",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": true,
+				"music": false
+			}
+		},
+		{
+			"user": "Bruce Wayne",
+			"id": "19de9e8a-5f68-4a21-a624-ef859b138201",
+			"time": "14:30",
+			"date": "23 May, 2022",
+			"category": "nature",
+			"title": "free jeezy",
+			"description": "hip hop ",
+			"location": "atl",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": false,
+				"music": true
+			}
+		},
+		{
+			"user": "Bruce Wayne",
+			"id": "3cf21a7c-5a25-4e35-8d52-64e12ac2dc5e",
+			"time": "14:30",
+			"date": "23 May, 2022",
+			"category": "community",
+			"title": "munch a`nd ",
+			"description": "munch a`nd  foood festival",
+			"location": "bulawayo",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": true,
+				"music": true
+			}
+		},
+		{
+			"id": "bb736e98-4aea-47f0-8e1d-4e27becb6336",
+			"category": "animal welfare",
+			"description": "event to raise funds to rescue dog",
+			"location": "Hillside",
+			"date": "23 May, 2022",
+			"time": "14:30",
+			"user": "Bruce Wayne",
+			"title": "Save the dogs",
+			"attendees": [],
+			"pets": 1,
+			"extras": {
+				"catering": true,
+				"music": false
+			}
+		},
+		{
+			"id": "1ab1431a-5cab-4337-98ae-f79bcdbade9b",
+			"category": "animal welfare",
+			"description": "event to raise funds to rescue dog",
+			"location": "Waterford",
+			"date": "23 May, 2022",
+			"time": "14:30",
+			"user": "Bruce Wayne",
+			"title": "Find the dogs",
+			"attendees": [],
+			"pets": 1,
+			"extras": {
+				"catering": true,
+				"music": false
+			}
+		},
+		{
+			"id": "60361ccf-7cf5-4fe5-9b33-f842c1becaf3",
+			"category": "housing",
+			"description": "random fifa team match up",
+			"location": "",
+			"date": "23 May, 2022",
+			"time": "14:30",
+			"user": "Bruce Wayne",
+			"title": "fifa showdown",
+			"attendees": [],
+			"pets": 1,
+			"extras": {
+				"catering": false,
+				"music": true
+			}
 		}
 	]
 }
