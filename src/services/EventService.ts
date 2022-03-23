@@ -1,4 +1,5 @@
 import axios from "axios"
+import { EventItem } from "../types"
 
 const apiClient = axios.create({
 	baseURL: "http://localhost:3000",
@@ -19,7 +20,7 @@ export default {
 	getEvent(id: number) {
 		return apiClient.get("/events/" + id)
 	},
-	postEvent(event: string) {
+	postEvent(event: EventItem) {
 		return apiClient
 			.post("/events/", event)
 			.then((res) => {

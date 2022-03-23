@@ -1,5 +1,5 @@
 export interface EventItem {
-	id: typeId
+	id: number
 	category: string
 	description: string
 	location: string
@@ -9,7 +9,7 @@ export interface EventItem {
 	title: string
 	attendees: string[]
 	pets: number
-	extras: string[]
+	extras: { catering: boolean; music: boolean }
 }
 
 export interface EventCardItem {}

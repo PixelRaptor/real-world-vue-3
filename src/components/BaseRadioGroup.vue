@@ -10,12 +10,13 @@
 	/>
 </template>
 
-<script>
+<script lang="ts">
+import { defineComponent } from "vue"
 import BaseRadio from "@/components/BaseRadio.vue"
-export default {
+export default defineComponent({
 	props: {
 		options: {
-			type: Array,
+			type: Object,
 			required: true,
 		},
 		name: {
@@ -30,5 +31,5 @@ export default {
 	components: {
 		BaseRadio,
 	},
-}
+})
 </script>

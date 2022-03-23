@@ -4,12 +4,12 @@
 		class="field"
 		v-bind="$attrs"
 		:value="modelValue"
-		@Change="$emit('update:modelValue', $event.target.value)"
+		@change="$emit('update:modelValue', $event.target.value)"
 	>
 		<option
-			v-for="option in options"
+			v-for="(option, index) in options"
 			:value="option"
-			:key="option"
+			:key="index"
 			:selected="option === modelValue"
 		>
 			{{ option }}
@@ -17,8 +17,9 @@
 	</select>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import { defineComponent } from "vue"
+export default defineComponent({
 	props: {
 		label: {
 			type: String,
@@ -33,5 +34,5 @@ export default {
 			required: true,
 		},
 	},
-}
+})
 </script>
