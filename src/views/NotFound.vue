@@ -3,8 +3,10 @@
 	<h3>The {{ resource }} you're looking for is not here.</h3>
 	<router-link :to="{ name: 'EventList' }">Back to home page</router-link>
 </template>
-<script>
-export default {
+
+<script lang="ts">
+import { defineComponent } from "vue"
+export default defineComponent({
 	props: {
 		resource: {
 			type: String,
@@ -12,5 +14,5 @@ export default {
 			default: "page",
 		},
 	},
-}
+})
 </script>
