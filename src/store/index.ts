@@ -21,6 +21,7 @@ export default createStore({
 			"community",
 		],
 		events: [],
+		event: {},
 		totalEvents: 0,
 	},
 	getters: {
@@ -49,8 +50,17 @@ export default createStore({
 		[UPDATE_TOTAL_EVENTS](state, count) {
 			state.totalEvents = count
 		},
+		UPDATE_EVENT(state, event) {
+			state.event = event
+		},
 	},
 	actions: {
+		goGetEvent({ commit }, id: any) {
+			return EventService.getEvent(id).then((res) => {
+				console.log(res, "res")
+				commit("UPDATE_EVENT", res.data)
+			})
+		},
 		createEvent({ commit }, event) {
 			return EventService.postEvent(event).then(() => {
 				commit(ADD_EVENT, event)
