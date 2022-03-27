@@ -84,6 +84,44 @@
         "catering": true,
         "music": true
       }
+    },
+    {
+      "id": 19061845,
+      "category": "animal welfare",
+      "description": "traviss catas desert fest ",
+      "location": "Nevada",
+      "date": "23 May, 2022",
+      "time": "14:30",
+      "user": {
+        "id": "abc123",
+        "name": "Bruce Wayne"
+      },
+      "title": "astro world",
+      "attendees": [],
+      "pets": 0,
+      "extras": {
+        "catering": false,
+        "music": true
+      }
+    },
+    {
+      "id": 58119606,
+      "category": "education",
+      "description": "book fundraiser event",
+      "location": "bulawayo",
+      "date": "23 May, 2022",
+      "time": "14:30",
+      "user": {
+        "id": "abc123",
+        "name": "Bruce Wayne"
+      },
+      "title": "kids for change",
+      "attendees": [],
+      "pets": 0,
+      "extras": {
+        "catering": true,
+        "music": false
+      }
     }
   ]
 }

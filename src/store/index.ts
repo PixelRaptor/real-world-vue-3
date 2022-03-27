@@ -53,12 +53,26 @@ export default createStore({
 		UPDATE_EVENT(state, event) {
 			state.event = event
 		},
+		UPDATE_EVENTS(state, events) {
+			state.events = events
+		},
 	},
 	actions: {
-		goGetEvent({ commit }, id: any) {
-			return EventService.getEvent(id).then((res) => {
-				console.log(res, "res")
-				commit("UPDATE_EVENT", res.data)
+		goGetEvent({ commit, getters }, id: any) {
+			const event = getters.getEventById(id)
+			if (event) {
+				return event
+			} else {
+				return EventService.getEvent(id).then((res) => {
+					commit("UPDATE_EVENT", res.data)
+					return res.data
+				})
+			}
+		},
+		goGetEvents({ commit, dispatch }, [limit, page]) {
+			return EventService.getEvents(limit, page).then((res) => {
+				commit("UPDATE_EVENTS", res.data)
+				dispatch("updateTotalEvents", res.headers["x-total-count"])
 			})
 		},
 		createEvent({ commit }, event) {

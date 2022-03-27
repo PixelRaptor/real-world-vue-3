@@ -39,6 +39,8 @@ import EventService from "@/services/EventService"
 import { EventItem } from "../types"
 import { watchEffect, defineComponent } from "vue"
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex"
+import store from "@/store/index"
+import nProgress from "nprogress"
 
 export default defineComponent({
 	name: "EventList",
@@ -46,32 +48,22 @@ export default defineComponent({
 	components: {
 		EventCard,
 	},
-	data() {
-		return {
-			events: [] as EventItem[],
-		}
-	},
-	created() {
-		watchEffect(() => {
-			this.events = [] as EventItem[]
-			EventService.getEvents(2, this.page)
-				.then((res) => {
-					this.events = res.data
-					this.$store.dispatch(
-						"updateTotalEvents",
-						res.headers["x-total-count"]
-					)
-				})
-				.catch((erra) => {
-					let wer = "something went wrong"
-					this.$router.push({
-						name: "NetworkError",
-						params: { err: erra.response.status },
-					})
-				})
+	beforeRouteEnter(routeTo: any, routeFrom: any, next: any) {
+		store.dispatch("goGetEvents", [2, routeTo.query.page || 1]).then(() => {
+			next()
 		})
 	},
-	methods: {},
+	beforeRouteUpdate(routeTo: any, routeFrom: any, next: any) {
+		store.dispatch("goGetEvents", [2, routeTo.query.page || 1]).then(() => {
+			next()
+		})
+	},
+	methods: {
+		flushCom() {
+			this.$router.go(0)
+		},
+		...mapActions(["goGetEvents"]),
+	},
 	computed: {
 		totalPages() {
 			type ComicUniverse = "Marvel" | "D.C"
@@ -100,7 +92,7 @@ export default defineComponent({
 			return this.page < this.totalPages
 		},
 		...mapGetters(["eventsCount"]),
-		...mapState(["totalEvents"]),
+		...mapState(["totalEvents", "events"]),
 	},
 })
 </script>

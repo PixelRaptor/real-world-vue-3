@@ -8,19 +8,46 @@ import AboutUs from "../views/AboutUs.vue"
 import SimpleForm from "../views/SimpleForm.vue"
 import NotFound from "../views/NotFound.vue"
 import NetworkError from "../views/NetworkError.vue"
+import nProgress from "nprogress"
+import store from "@/store"
 
 const routes = [
 	{
 		path: "/",
 		name: "EventList",
 		component: EventList,
-		props: (route: any) => ({ page: parseInt(route.query.page) || 1 }),
+		props: (route: any) => ({
+			page: parseInt(route.query.page) || 1,
+			events: [],
+		}),
 	},
 	{
 		path: "/events/:id",
 		name: "EventLayout",
 		props: true,
 		component: EventLayout,
+		beforeEnter(routeTo: any, routeFrom: any, next: any) {
+			nProgress.start()
+			store
+				.dispatch("goGetEvent", routeTo.params.id)
+				.then((event) => {
+					nProgress.done()
+					routeTo.params.event = event
+					next()
+				})
+				.catch((error: any) => {
+					nProgress.done()
+					console.log(error)
+					if (error.response && error.response.status == 404) {
+						next({
+							name: "404Resource",
+							params: { resource: "event" },
+						})
+					} else {
+						next({ name: "NetworkError" })
+					}
+				})
+		},
 		children: [
 			{
 				path: "",
@@ -77,6 +104,14 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory(process.env.BASE_URL),
 	routes,
+})
+
+router.beforeEach((routeTo, routeFrom, next) => {
+	nProgress.start()
+	next()
+})
+router.afterEach((routeTo, routeFrom) => {
+	nProgress.done()
 })
 
 export default router
