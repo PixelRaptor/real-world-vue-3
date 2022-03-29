@@ -1,22 +1,72 @@
 <template>
 	<div>
-		<h1>Create an event{{ user.name }}</h1>
+		<h1>Create an event</h1>
 		<form @submit.prevent="sendIt">
 			<BaseSelect
+				@blur="v$.event.category.$touch"
+				:class="{
+					'input-error': v$.event.category.required.$invalid,
+				}"
 				v-model="event.category"
 				:options="categories"
 				label="Select a category"
 			/>
+			<p
+				v-if="
+					v$.event.category.required.$invalid &&
+					v$.event.category.$dirty
+				"
+			>
+				{{ v$.event.category.required.$message }}
+			</p>
 			<h3>Name & describe your event</h3>
-			<BaseInput v-model="event.title" label="Title" type="text" />
+			<BaseInput
+				@blur="v$.event.title.$touch"
+				:class="{
+					'input-error': v$.event.title.required.$invalid,
+				}"
+				v-model="event.title"
+				label="Title"
+				type="text"
+			/>
+			<p v-if="v$.event.title.required.$invalid && v$.event.title.$dirty">
+				{{ v$.event.title.required.$message }}
+			</p>
 			<br />
 			<BaseInput
+				@blur="v$.event.description.$touch"
+				:class="{
+					'input-error': v$.event.description.required.$invalid,
+				}"
 				v-model="event.description"
 				label="Description"
 				type="text"
 			/>
+			<p
+				v-if="
+					v$.event.description.$invalid && v$.event.description.$dirty
+				"
+			>
+				{{ v$.event.description.required.$message }}
+			</p>
 			<h3>Where is your event?</h3>
-			<BaseInput v-model="event.location" label="Location" type="text" />
+			<BaseInput
+				@blur="v$.event.location.$touch"
+				:class="{
+					'input-error': v$.event.location.required.$invalid,
+				}"
+				v-model="event.location"
+				label="Location"
+				type="text"
+			/>
+			<p
+				v-if="
+					v$.event.location.required.$invalid &&
+					v$.event.location.$dirty
+				"
+			>
+				{{ v$.event.location.required.$message }}
+			</p>
 			<h3>Are pets allowed?</h3>
 			<div>
 				<BaseRadioGroup
@@ -40,7 +90,8 @@
 					type="checkbox"
 				/>
 			</div>
-			<button type="submit">Submit</button>
+			<!-- <p v-if="v$.">Please complete your form</p> -->
+			<button :disabled="v$.$invalid" type="submit">Submit</button>
 		</form>
 		<pre>{{ event }}</pre>
 	</div>
@@ -56,8 +107,14 @@ import { defineComponent } from "vue"
 import { mapState, mapGetters, mapMutations, mapActions } from "vuex"
 import { ADD_EVENT } from "../store/mutation-types"
 import { EventItem } from "@/types"
+import nProgress from "nprogress"
+import useVuelidate from "@vuelidate/core"
+import { required, email } from "@vuelidate/validators"
 
 export default defineComponent({
+	setup() {
+		return { v$: useVuelidate() }
+	},
 	data() {
 		return {
 			event: this.createFreshEventObject(),
@@ -66,6 +123,14 @@ export default defineComponent({
 				{ label: "No", value: 0 },
 			],
 		}
+	},
+	validations: {
+		event: {
+			title: { required },
+			description: { required },
+			location: { required },
+			category: { required },
+		},
 	},
 	components: {
 		BaseInput,
@@ -78,7 +143,9 @@ export default defineComponent({
 			const user = this.$store.state.user
 			const id = Math.ceil(Math.random() * 100000000)
 			const time = "14:30"
-			const date = "23 May, 2022"
+			const date = new Date()
+			console.log(typeof new Date())
+			console.log(date)
 
 			return {
 				id: id,
@@ -101,16 +168,24 @@ export default defineComponent({
 			this.INCREMENT_COUNT(8)
 		},
 		sendIt() {
-			this.$store
-				.dispatch("createEvent", this.event)
-				.then(() => {
-					this.$router.push({
-						name: "EventDetails",
-						params: { id: this.event.id },
+			this.v$.$touch()
+			if (!this.v$.$invalid) {
+				this.event.date = new Date()
+				nProgress.start()
+				this.$store
+					.dispatch("createEvent", this.event)
+					.then(() => {
+						nProgress.done()
+						this.$router.push({
+							name: "EventDetails",
+							params: { id: this.event.id },
+						})
+						this.createFreshEventObject()
 					})
-					this.createFreshEventObject()
-				})
-				.catch(() => {})
+					.catch(() => {
+						nProgress.done()
+					})
+			}
 		},
 		sendForm() {
 			axios

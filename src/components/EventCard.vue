@@ -18,6 +18,12 @@ export default defineComponent({
 	props: {
 		event: Object as PropType<EventItem>,
 	},
+	filters: {
+		dateFilter(value: string) {
+			return value.toString
+		},
+	},
+	computed: {},
 })
 </script>
 

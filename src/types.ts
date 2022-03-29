@@ -3,7 +3,7 @@ export interface EventItem {
 	category: string
 	description: string
 	location: string
-	date: string
+	date: object
 	time: string
 	user: string[]
 	title: string

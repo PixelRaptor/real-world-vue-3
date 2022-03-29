@@ -8,6 +8,7 @@ import AboutUs from "../views/AboutUs.vue"
 import SimpleForm from "../views/SimpleForm.vue"
 import NotFound from "../views/NotFound.vue"
 import NetworkError from "../views/NetworkError.vue"
+import ExampleForm from "../views/ExampleForm.vue"
 import nProgress from "nprogress"
 import store from "@/store"
 
@@ -18,36 +19,39 @@ const routes = [
 		component: EventList,
 		props: (route: any) => ({
 			page: parseInt(route.query.page) || 1,
-			events: [],
 		}),
+	},
+	{
+		path: "/exampleform",
+		component: ExampleForm,
 	},
 	{
 		path: "/events/:id",
 		name: "EventLayout",
 		props: true,
 		component: EventLayout,
-		beforeEnter(routeTo: any, routeFrom: any, next: any) {
-			nProgress.start()
-			store
-				.dispatch("goGetEvent", routeTo.params.id)
-				.then((event) => {
-					nProgress.done()
-					routeTo.params.event = event
-					next()
-				})
-				.catch((error: any) => {
-					nProgress.done()
-					console.log(error)
-					if (error.response && error.response.status == 404) {
-						next({
-							name: "404Resource",
-							params: { resource: "event" },
-						})
-					} else {
-						next({ name: "NetworkError" })
-					}
-				})
-		},
+		// beforeEnter(routeTo: any, routeFrom: any, next: any) {
+		// 	nProgress.start()
+		// 	store
+		// 		.dispatch("goGetEvent", routeTo.params.id)
+		// 		.then((event) => {
+		// 			nProgress.done()
+		// 			routeTo.params.event = event
+		// 			next()
+		// 		})
+		// 		.catch((error: any) => {
+		// 			nProgress.done()
+		// 			console.log(error)
+		// 			if (error.response && error.response.status == 404) {
+		// 				next({
+		// 					name: "404Resource",
+		// 					params: { resource: "event" },
+		// 				})
+		// 			} else {
+		// 				next({ name: "NetworkError" })
+		// 			}
+		// 		})
+		// },
 		children: [
 			{
 				path: "",
@@ -66,6 +70,7 @@ const routes = [
 			},
 		],
 	},
+
 	{
 		path: "/event/:afterEvent(.*)",
 		redirect: (to: any) => {
@@ -83,11 +88,6 @@ const routes = [
 		component: SimpleForm,
 	},
 	{
-		path: "/:catchAll(.*)",
-		name: "NotFound",
-		component: NotFound,
-	},
-	{
 		path: "/404/:resource",
 		name: "404Resource",
 		component: NotFound,
@@ -98,6 +98,11 @@ const routes = [
 		name: "NetworkError",
 		component: NetworkError,
 		props: true,
+	},
+	{
+		path: "/:catchAll(.*)",
+		name: "NotFound",
+		component: NotFound,
 	},
 ]
 

@@ -23,3 +23,8 @@ export default {
 	},
 }
 </script>
+<style scoped>
+.input-error {
+	border-color: red;
+}
+</style>

@@ -1,127 +1,203 @@
 {
-  "events": [
-    {
-      "id": 123,
-      "category": "animal welfare",
-      "title": "Cat Adoption Day",
-      "description": "Find your new feline friend at this event.",
-      "location": "Meow Town",
-      "date": "January 28, 2022",
-      "time": "12:00",
-      "petsAllowed": true,
-      "organizer": "Kat Laydee"
-    },
-    {
-      "id": 456,
-      "category": "food",
-      "title": "Community Gardening",
-      "description": "Join us as we tend to the community edible plants.",
-      "location": "Flora City",
-      "date": "March 14, 2022",
-      "time": "10:00",
-      "petsAllowed": true,
-      "organizer": "Fern Pollin"
-    },
-    {
-      "id": 789,
-      "category": "sustainability",
-      "title": "Beach Cleanup",
-      "description": "Help pick up trash along the shore.",
-      "location": "Playa Del Carmen",
-      "date": "July 22, 2022",
-      "time": "11:00",
-      "petsAllowed": false,
-      "organizer": "Carey Wales"
-    },
-    {
-      "id": 1001,
-      "category": "animal welfare",
-      "title": "Dog Adoption Day",
-      "description": "Find your new canine friend at this event.",
-      "location": "Woof Town",
-      "date": "August 28, 2022",
-      "time": "12:00",
-      "petsAllowed": true,
-      "organizer": "Dawg Dahd"
-    },
-    {
-      "id": 1002,
-      "category": "food",
-      "title": "Canned Food Drive",
-      "description": "Bring your canned food to donate to those in need.",
-      "location": "Tin City",
-      "date": "September 14, 2022",
-      "time": "3:00",
-      "petsAllowed": true,
-      "organizer": "Kahn Opiner"
-    },
-    {
-      "id": 1003,
-      "category": "sustainability",
-      "title": "Highway Cleanup",
-      "description": "Help pick up trash along the highway.",
-      "location": "Highway 50",
-      "date": "July 22, 2022",
-      "time": "11:00",
-      "petsAllowed": false,
-      "organizer": "Brody Kill"
-    },
-    {
-      "id": 88966971,
-      "category": "animal welfare",
-      "description": "Deep in the city of kings",
-      "location": "Bulawayo",
-      "date": "23 May, 2022",
-      "time": "14:30",
-      "user": {
-        "id": "abc123",
-        "name": "Bruce Wayne"
-      },
-      "title": "Finding never land",
-      "attendees": [],
-      "pets": 0,
-      "extras": {
-        "catering": true,
-        "music": true
-      }
-    },
-    {
-      "id": 19061845,
-      "category": "animal welfare",
-      "description": "traviss catas desert fest ",
-      "location": "Nevada",
-      "date": "23 May, 2022",
-      "time": "14:30",
-      "user": {
-        "id": "abc123",
-        "name": "Bruce Wayne"
-      },
-      "title": "astro world",
-      "attendees": [],
-      "pets": 0,
-      "extras": {
-        "catering": false,
-        "music": true
-      }
-    },
-    {
-      "id": 58119606,
-      "category": "education",
-      "description": "book fundraiser event",
-      "location": "bulawayo",
-      "date": "23 May, 2022",
-      "time": "14:30",
-      "user": {
-        "id": "abc123",
-        "name": "Bruce Wayne"
-      },
-      "title": "kids for change",
-      "attendees": [],
-      "pets": 0,
-      "extras": {
-        "catering": true,
-        "music": false
-      }
-    }
-  ]
+	"events": [
+		{
+			"id": 123,
+			"category": "animal welfare",
+			"title": "Cat Adoption Day",
+			"description": "Find your new feline friend at this event.",
+			"location": "Meow Town",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "12:00",
+			"petsAllowed": true,
+			"organizer": "Kat Laydee"
+		},
+		{
+			"id": 456,
+			"category": "food",
+			"title": "Community Gardening",
+			"description": "Join us as we tend to the community edible plants.",
+			"location": "Flora City",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "10:00",
+			"petsAllowed": true,
+			"organizer": "Fern Pollin"
+		},
+		{
+			"id": 789,
+			"category": "sustainability",
+			"title": "Beach Cleanup",
+			"description": "Help pick up trash along the shore.",
+			"location": "Playa Del Carmen",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "11:00",
+			"petsAllowed": false,
+			"organizer": "Carey Wales"
+		},
+		{
+			"id": 1001,
+			"category": "animal welfare",
+			"title": "Dog Adoption Day",
+			"description": "Find your new canine friend at this event.",
+			"location": "Woof Town",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "12:00",
+			"petsAllowed": true,
+			"organizer": "Dawg Dahd"
+		},
+		{
+			"id": 1002,
+			"category": "food",
+			"title": "Canned Food Drive",
+			"description": "Bring your canned food to donate to those in need.",
+			"location": "Tin City",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "3:00",
+			"petsAllowed": true,
+			"organizer": "Kahn Opiner"
+		},
+		{
+			"id": 1003,
+			"category": "sustainability",
+			"title": "Highway Cleanup",
+			"description": "Help pick up trash along the highway.",
+			"location": "Highway 50",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "11:00",
+			"petsAllowed": false,
+			"organizer": "Brody Kill"
+		},
+		{
+			"id": 88966971,
+			"category": "animal welfare",
+			"description": "Deep in the city of kings",
+			"location": "Bulawayo",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "14:30",
+			"user": {
+				"id": "abc123",
+				"name": "Bruce Wayne"
+			},
+			"title": "Finding never land",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": true,
+				"music": true
+			}
+		},
+		{
+			"id": 19061845,
+			"category": "animal welfare",
+			"description": "traviss catas desert fest ",
+			"location": "Nevada",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "14:30",
+			"user": {
+				"id": "abc123",
+				"name": "Bruce Wayne"
+			},
+			"title": "astro world",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": false,
+				"music": true
+			}
+		},
+		{
+			"id": 58119606,
+			"category": "education",
+			"description": "book fundraiser event",
+			"location": "bulawayo",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "14:30",
+			"user": {
+				"id": "abc123",
+				"name": "Bruce Wayne"
+			},
+			"title": "kids for change",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": true,
+				"music": false
+			}
+		},
+		{
+			"id": 20509875,
+			"category": "nature",
+			"description": "trex lost in the jungle",
+			"location": "Congo",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "14:30",
+			"user": {
+				"id": "abc123",
+				"name": "Bruce Wayne"
+			},
+			"title": "Finding dino",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": true,
+				"music": false
+			}
+		},
+		{
+			"id": 78968141,
+			"category": "education",
+			"description": "housing",
+			"location": "",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "14:30",
+			"user": {
+				"id": "abc123",
+				"name": "Bruce Wayne"
+			},
+			"title": "rdp",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": false,
+				"music": false
+			}
+		},
+		{
+			"id": 78399374,
+			"category": "community",
+			"description": "food",
+			"location": "byo",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "14:30",
+			"user": {
+				"id": "abc123",
+				"name": "Bruce Wayne"
+			},
+			"title": "Feed the city",
+			"attendees": [],
+			"pets": 0,
+			"extras": {
+				"catering": false,
+				"music": false
+			}
+		},
+		{
+			"id": 3612330,
+			"category": "nature",
+			"description": "wayne",
+			"location": "batman",
+			"date": "2022-03-29T21:02:28.306Z",
+			"time": "14:30",
+			"user": {
+				"id": "abc123",
+				"name": "Bruce Wayne"
+			},
+			"title": "Bruce",
+			"attendees": [],
+			"pets": 1,
+			"extras": {
+				"catering": true,
+				"music": false
+			}
+		}
+	]
 }
